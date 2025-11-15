@@ -43,7 +43,7 @@ export class AuthController {
   @Post('signup')
   async createNewUser(@Body() payload: CreateUserDto) {
     await this.authService.signUp(payload);
-    return { msg: 'Signup successful' };
+    return { message: 'Signup successful' };
   }
 
   @Auth(AuthType.None)
@@ -54,7 +54,7 @@ export class AuthController {
   ) {
     const refreshToken: string = req.cookies[RT_COOKIE_NAME];
     if (!refreshToken) {
-      throw new UnauthorizedException('Refresh token missing');
+      throw new UnauthorizedException('No refresh token provided');
     }
 
     const { accessToken, refreshToken: newRefreshToken } =

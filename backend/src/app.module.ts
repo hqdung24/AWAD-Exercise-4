@@ -3,9 +3,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 // import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from '@/modules/auth/auth.module';
-import { MetaOptionsModule } from '@/modules/meta-options/meta-options.module';
-import { PostsModule } from '@/modules/posts/posts.module';
-import { TagsModule } from '@/modules/tags/tags.module';
 import { UsersModule } from '@/modules/users/users.module';
 import { PaginationModule } from './common/pagination/pagination.module';
 import { appConfig } from './config/app.config';
@@ -39,10 +36,8 @@ const ENV = process.env.NODE_ENV; //if (ENV === 'development' || ENV === 'test')
       }),
     }),
     UsersModule,
-    PostsModule,
+
     AuthModule,
-    TagsModule,
-    MetaOptionsModule,
     PaginationModule,
   ],
   providers: [

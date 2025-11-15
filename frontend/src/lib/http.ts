@@ -48,6 +48,7 @@ http.interceptors.response.use(
       | (AxiosRequestConfig & { _retry?: boolean })
       | undefined;
     const status = error.response?.status;
+
     const url = (original?.url || '').toLowerCase();
 
     if (!original || original._retry) return Promise.reject(error);
@@ -60,7 +61,7 @@ http.interceptors.response.use(
 
     if (status === 401 && !skip) {
       original._retry = true;
-
+      console.log('Cookie sẵn sàng gửi: ', document.cookie); // Xem có cookie RT không
       try {
         if (isRefreshing) {
           // chờ AT mới
@@ -75,7 +76,7 @@ http.interceptors.response.use(
 
         isRefreshing = true;
 
-        // cookie RT tự gửi, BE trả { accessToken }
+        // cookie RT tự gửi, BE trả { accessToken } va set new RT cookie
         const resp = await refreshHttp.post('/auth/refresh');
         const { accessToken } = RefreshResponseSchema.parse(resp.data.data);
 
@@ -90,6 +91,7 @@ http.interceptors.response.use(
         return http.request(original);
       } catch (e) {
         useAuthStore.getState().logout();
+
         waiters = [];
         return Promise.reject(e);
       } finally {

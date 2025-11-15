@@ -14,7 +14,7 @@ async function bootstrap() {
 
   //Enable cors
   app.enableCors({
-    origin: true,
+    origin: 'http://localhost:5173',
     credentials: true,
   });
   //Enable cookie parser
@@ -37,7 +37,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .setTitle('Nestjs learning api')
     .setDescription('The description of my application')
-    .addServer('http://localhost:3600')
+    .addServer('http://localhost:3000')
     .addBearerAuth(
       {
         type: 'http',

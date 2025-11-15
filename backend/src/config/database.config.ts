@@ -6,6 +6,6 @@ export const databaseConfig = registerAs('database', () => ({
   username: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASS || 'supersecret',
   name: process.env.DB_NAME || 'blauchat_db',
-  synchronize: process.env.DB_SYNCHRONIZE === 'true' ? true : false,
+  synchronize: process.env.DATABASE_SYNC === 'true' ? true : false,
   autoLoadEntities: process.env.DB_AUTO_LOAD_ENTITIES === 'true' ? true : false,
 }));

@@ -1,13 +1,11 @@
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn,
-  OneToMany,
 } from 'typeorm';
-import { Post } from '../posts/post.entity';
 
 @Entity('users')
 export class User {
@@ -28,9 +26,6 @@ export class User {
 
   @Column({ default: true })
   isActive: boolean;
-
-  @OneToMany(() => Post, (post) => post.author)
-  posts: Post[];
 
   @CreateDateColumn()
   createdAt: Date;
